@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PortfolioData, PersonalInfo, LearningGoal, PortfolioGoal, Project, ThemeId } from '../types';
+import { PortfolioData, PersonalInfo, LearningGoal, PortfolioGoal, Project, ThemeId, Reflection } from '../types';
 import * as Icons from 'lucide-react';
 
 interface EditorPanelProps {
@@ -10,7 +10,7 @@ interface EditorPanelProps {
   onReset: () => void;
 }
 
-type TabType = 'info' | 'goals' | 'portfolio' | 'projects' | 'data';
+type TabType = 'info' | 'goals' | 'portfolio' | 'projects' | 'reflections' | 'data';
 
 export const EditorPanel: React.FC<EditorPanelProps> = ({
   data,
@@ -34,6 +34,12 @@ export const EditorPanel: React.FC<EditorPanelProps> = ({
     githubUrl: '',
     demoUrl: '',
     timeString: ''
+  });
+  const [newReflectionForm, setNewReflectionForm] = useState({
+    title: '',
+    category: 'technical' as 'technical' | 'softskill' | 'general' | 'obstacle',
+    date: '',
+    content: ''
   });
   const [jsonImportText, setJsonImportText] = useState('');
   const [showNotification, setShowNotification] = useState<string | null>(null);
@@ -155,6 +161,42 @@ export const EditorPanel: React.FC<EditorPanelProps> = ({
     triggerToast('Đã xóa dự án học tập!');
   };
 
+  // Reflections actions
+  const handleAddReflection = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newReflectionForm.title.trim() || !newReflectionForm.content.trim()) return;
+
+    const newRef: Reflection = {
+      id: `ref-${Date.now()}`,
+      title: newReflectionForm.title,
+      category: newReflectionForm.category,
+      date: newReflectionForm.date || 'Hôm nay',
+      content: newReflectionForm.content
+    };
+
+    const updated = {
+      ...data,
+      reflections: [...(data.reflections || []), newRef]
+    };
+    onChange(updated);
+    setNewReflectionForm({
+      title: '',
+      category: 'technical',
+      date: '',
+      content: ''
+    });
+    triggerToast('Đã thêm dòng nhật ký trải nghiệm mới!');
+  };
+
+  const handleDeleteReflection = (refId: string) => {
+    const updated = {
+      ...data,
+      reflections: (data.reflections || []).filter(r => r.id !== refId)
+    };
+    onChange(updated);
+    triggerToast('Đã xóa dòng nhật ký trải nghiệm!');
+  };
+
   // Export & Import actions
   const handleExport = () => {
     const serialized = JSON.stringify(data, null, 2);
@@ -245,6 +287,15 @@ export const EditorPanel: React.FC<EditorPanelProps> = ({
         >
           <Icons.FolderPlus size={13} />
           Dự án ({data.projects.length})
+        </button>
+        <button
+          onClick={() => setActiveTab('reflections')}
+          className={`flex items-center gap-1.5 px-3 py-2.5 rounded-md text-xs font-semibold whitespace-nowrap transition-all ${
+            activeTab === 'reflections' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-900'
+          }`}
+        >
+          <Icons.BookOpen size={13} />
+          Nhật ký ({data.reflections?.length || 0})
         </button>
         <button
           onClick={() => setActiveTab('data')}
@@ -671,6 +722,109 @@ export const EditorPanel: React.FC<EditorPanelProps> = ({
               >
                 <Icons.Save size={14} />
                 Lưu và cập nhật Dự án
+              </button>
+            </form>
+          </div>
+        )}
+
+        {/* TAB 5: PERSONAL REFLECTIONS */}
+        {activeTab === 'reflections' && (
+          <div className="space-y-5">
+            <div className="border-b border-slate-800 pb-2">
+              <h3 className="text-sm font-bold text-indigo-400">Trải nghiệm cá nhân & Nhật ký dự án</h3>
+              <p className="text-[11px] text-slate-400">Ghi lại suy nghĩ, trải nghiệm khi vượt qua khó khăn, học thuật toán hoặc làm việc nhóm</p>
+            </div>
+
+            {/* Existing reflections mini layout */}
+            {data.reflections && data.reflections.length > 0 && (
+              <div className="space-y-2.5">
+                <label className="text-[11px] font-semibold text-slate-300 uppercase block tracking-wider">Các bài viết đã lưu ({data.reflections.length})</label>
+                <div className="max-h-48 overflow-y-auto space-y-2 pr-1 custom-scrollbar w-full">
+                  {data.reflections.map((r) => (
+                    <div key={r.id} className="flex items-center justify-between p-2.5 bg-slate-800/80 rounded border border-slate-750 text-xs text-slate-200">
+                      <div className="min-w-0 flex-1">
+                        <p className="font-bold text-slate-200 truncate">{r.title}</p>
+                        <p className="text-[10px] text-slate-400">
+                          {r.category === 'technical' && 'Chuyên môn'}
+                          {r.category === 'softskill' && 'Kỹ năng mềm'}
+                          {r.category === 'obstacle' && 'Vượt qua thử thách'}
+                          {r.category === 'general' && 'Đại cương / Đam mê'}
+                          {` • ${r.date}`}
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => handleDeleteReflection(r.id)}
+                        className="text-slate-400 hover:text-red-400 p-1 rounded hover:bg-slate-700/50"
+                        title="Xóa nhật ký"
+                      >
+                        <Icons.Trash2 size={13} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Add Reflection Form */}
+            <form onSubmit={handleAddReflection} className="p-4 bg-slate-800/40 rounded-lg border border-slate-800 space-y-3.5">
+              <h4 className="text-[11px] font-bold text-indigo-300 uppercase block tracking-wider">Thêm nhật ký mới</h4>
+
+              <div className="space-y-1">
+                <label className="text-[10px] text-slate-300 font-semibold block">Tiêu đề bài viết</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="Ví dụ: Lần đầu thiết kế ERD database"
+                  value={newReflectionForm.title}
+                  onChange={(e) => setNewReflectionForm({ ...newReflectionForm, title: e.target.value })}
+                  className="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs text-white focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3.5">
+                <div className="space-y-1">
+                  <label className="text-[10px] text-slate-300 font-semibold block">Phân loại trải nghiệm</label>
+                  <select
+                    value={newReflectionForm.category}
+                    onChange={(e) => setNewReflectionForm({ ...newReflectionForm, category: e.target.value as any })}
+                    className="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs text-white focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer"
+                  >
+                    <option value="technical">Kỹ thuật chuyên môn</option>
+                    <option value="softskill">Kỹ năng mềm / Nhóm</option>
+                    <option value="obstacle">Vượt qua thử thách</option>
+                    <option value="general">Khám phá đam mê / Khác</option>
+                  </select>
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[10px] text-slate-300 font-semibold block">Thời điểm ghi nhận</label>
+                  <input
+                    type="text"
+                    placeholder="Ví dụ: Tháng 11/2026"
+                    value={newReflectionForm.date}
+                    onChange={(e) => setNewReflectionForm({ ...newReflectionForm, date: e.target.value })}
+                    className="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs text-white focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-[10px] text-slate-300 font-semibold block">Nội dung tự sự, chia sẻ bài học</label>
+                <textarea
+                  required
+                  placeholder="Ghi lại suy nghĩ, các giải pháp tìm kiếm dữ liệu, cách bàn bạc trao đổi trong nhóm và bài học giá trị rút ra..."
+                  value={newReflectionForm.content}
+                  onChange={(e) => setNewReflectionForm({ ...newReflectionForm, content: e.target.value })}
+                  rows={4}
+                  className="w-full bg-slate-900 border border-slate-700 rounded p-2 text-xs text-white focus:outline-none focus:ring-1 focus:ring-indigo-500 leading-relaxed"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full flex items-center justify-center gap-1.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded text-xs font-bold transition"
+              >
+                <Icons.Save size={14} />
+                Lưu dòng nhật ký trải nghiệm
               </button>
             </form>
           </div>
