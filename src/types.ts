@@ -39,11 +39,20 @@ export interface Project {
   timeString: string;
 }
 
+export interface Reflection {
+  id: string;
+  title: string;
+  date: string;
+  content: string;
+  category: 'technical' | 'softskill' | 'general' | 'obstacle';
+}
+
 export interface PortfolioData {
   personalInfo: PersonalInfo;
   learningGoals: LearningGoal[];
   portfolioGoals: PortfolioGoal[];
   projects: Project[];
+  reflections?: Reflection[];
 }
 
 export type ThemeId = 'uet-classic' | 'modern-dark' | 'cyber-emerald' | 'warm-editorial';
