@@ -412,6 +412,94 @@ export const ProfilePreview: React.FC<ProfilePreviewProps> = ({
             )}
           </div>
         </section>
+
+        {/* PERSONAL REFLECTIONS SECTION (Trải nghiệm cá nhân & Nhật ký dự án) */}
+        <section className="space-y-6">
+          <div className="flex items-center justify-between pb-2">
+            <div className="flex items-center gap-2">
+              <div className={`w-1.5 h-6 rounded-full ${vars.accentBar}`}></div>
+              <div>
+                <h2 className="text-xl font-bold tracking-tight">Trải Nghiệm Cá Nhân & Hành Trình Dự Án</h2>
+                <p className="text-xs text-slate-500">Nhật ký tự sự, khó khăn, nỗ lực và bài học thực tế đúc kết của sinh viên năm nhất</p>
+              </div>
+            </div>
+            <span className="hidden sm:inline-flex items-center gap-1.5 text-xs text-indigo-600 dark:text-emerald-400 font-mono font-semibold">
+              <Icons.BookOpen size={13} className="animate-pulse" />
+              {data.reflections?.length || 0} Nhật ký hành trình
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {data.reflections && data.reflections.length > 0 ? (
+              data.reflections.map((ref) => {
+                let categoryColorClass = "bg-blue-550/10 text-blue-600 dark:text-blue-400 border-blue-500/20";
+                let categoryLabel = "Trải nghiệm chung";
+                let categoryIcon = <Icons.Sparkles size={14} />;
+
+                if (ref.category === 'technical') {
+                  categoryColorClass = "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20";
+                  categoryLabel = "Kỹ thuật chuyên môn";
+                  categoryIcon = <Icons.Cpu size={14} />;
+                } else if (ref.category === 'softskill') {
+                  categoryColorClass = "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20";
+                  categoryLabel = "Kỹ năng mềm / Nhóm";
+                  categoryIcon = <Icons.Users size={14} />;
+                } else if (ref.category === 'obstacle') {
+                  categoryColorClass = "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20";
+                  categoryLabel = "Vượt qua thử thách";
+                  categoryIcon = <Icons.AlertTriangle size={14} />;
+                } else if (ref.category === 'general') {
+                  categoryColorClass = "bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20";
+                  categoryLabel = "Định hướng & Đam mê";
+                  categoryIcon = <Icons.Compass size={14} />;
+                }
+
+                return (
+                  <div
+                    key={ref.id}
+                    className={`p-6 rounded-2xl border flex flex-col justify-between hover:scale-[1.01] hover:shadow-lg transition-all duration-300 relative overflow-hidden ${vars.card}`}
+                  >
+                    {/* Corner accent decorative ring */}
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-indigo-500/5 to-transparent rounded-full -mr-6 -mt-6 pointer-events-none" />
+
+                    <div className="space-y-4">
+                      {/* Reflection meta details */}
+                      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-opacity-5 pb-3">
+                        <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-wider border ${categoryColorClass}`}>
+                          {categoryIcon}
+                          {categoryLabel}
+                        </span>
+                        <div className="flex items-center gap-1 text-[11px] font-mono text-slate-500">
+                          <Icons.Clock size={11} />
+                          {ref.date}
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <h3 className="text-base font-bold tracking-tight">
+                          {ref.title}
+                        </h3>
+                        <p className={`text-xs md:text-sm leading-relaxed whitespace-pre-wrap ${vars.textMuted}`}>
+                          {ref.content}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="mt-4 pt-4 border-t border-dotted border-opacity-35 border-slate-200 dark:border-slate-800 flex justify-end">
+                      <span className="text-[10px] font-mono text-slate-400">
+                        {personalInfo.name || 'Trần Bích Ngọc'} &bull; {personalInfo.classCode || 'K70-HTT'}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <p className="col-span-2 text-sm text-center py-12 border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-xl text-slate-400 font-mono">
+                Chưa có dòng nhật ký trải nghiệm thực tế nào. Bạn hãy tự viết bằng công cụ chỉnh sửa phía bên phải!
+              </p>
+            )}
+          </div>
+        </section>
       </div>
 
       {/* FOOTER SECTION */}
