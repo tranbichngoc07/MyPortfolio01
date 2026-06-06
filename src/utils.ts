@@ -182,6 +182,36 @@ export const DEFAULT_PORTFOLIO_DATA: PortfolioData = {
       demoUrl: '#',
       timeString: 'Khoảng nghỉ giữa 2 kỳ học'
     }
+  ],
+  reflections: [
+    {
+      id: 'ref-1',
+      title: 'Bước đầu bỡ ngỡ với C++ và Tư duy thuật toán',
+      date: 'Tháng 10/2026',
+      content: 'Khi mới bước chân vào giảng đường UET, môn Kỹ thuật lập trình C++ thực sự là một thử thách lớn. Mình từng loay hoay với việc quản lý con trỏ và giải thuật tìm đường Dijkstra cho dự án UET Tour. Tuy nhiên, sau nhiều đêm trao đổi cùng các bạn trong nhóm và sự hỗ trợ nhiệt tình từ thầy cô trợ giảng, mình đã tự tay chạy được demo đầu tiên. Trải nghiệm vượt qua áp lực ban đầu này giúp mình tự tin hơn hẳn khi đối mặt với các bài toán lập trình phức tạp.',
+      category: 'technical'
+    },
+    {
+      id: 'ref-2',
+      title: 'Học cách làm việc nhóm qua dự án UET Book Share',
+      date: 'Tháng 11/2026',
+      content: 'Dự án thiết kế ERD và thiết lập cơ sở dữ liệu mô phỏng cho UET Book Share dạy mình rằng lập trình không chỉ là gõ code một mình. Trong giai đoạn đầu, nhóm mình có nhiều mâu thuẫn về cách phân chia thực thể và chuẩn hóa 3NF. Việc học cách lắng nghe, trình bày ý kiến bằng sơ đồ trực quan và cùng nhau đi đến thống nhất đã giúp tiến độ nhóm tăng tốc đáng kể. Kỹ năng giao tiếp này thực sự quan trọng đối với định hướng Business Analyst tương lai của mình.',
+      category: 'softskill'
+    },
+    {
+      id: 'ref-3',
+      title: 'Vượt qua hội chứng kẻ giả mạo (Imposter Syndrome) năm nhất',
+      date: 'Tháng 12/2026',
+      content: 'Xung quanh mình tại UET có rất nhiều bạn cực kỳ xuất sắc, đạt giải quốc gia hay đã đi làm dự án thực tế từ cấp ba. Đôi lúc mình cảm thấy vô cùng lạc lõng và nghi ngờ năng lực bản thân. Nhưng qua việc hoàn thiện portfolio học tập này, mình chợt nhận ra ai cũng có một xuất phát điểm riêng. Thay vì so sánh với người khác, mình lựa chọn tập trung cải thiện bản thân 1% mỗi ngày và ghi nhận từng thành tựu nhỏ nhất của bản thân.',
+      category: 'obstacle'
+    },
+    {
+      id: 'ref-4',
+      title: 'Định hình đam mê với dữ liệu và hệ thống thông tin',
+      date: 'Tháng 01/2027',
+      content: 'Sau khi hoàn thành báo cáo môn học Hệ thống Thông tin quản lý, mình hiểu rõ hơn tại sao dữ liệu lại được coi là "dầu mỏ" của thế kỷ 21. Những con số khô khan khi được mô hình hóa và tổ chức hợp lý sẽ mở ra những insight nghiệp vụ vô giá cho doanh nghiệp. Mình cảm thấy cực kỳ hào hứng khi thấy lựa chọn chuyên ngành của bản thân ngày càng trở nên đúng đắn.',
+      category: 'general'
+    }
   ]
 };
 
@@ -195,6 +225,9 @@ export function getPortfolioData(): PortfolioData {
       const parsed = JSON.parse(saved);
       // Ensure key sections exist
       if (parsed.personalInfo && parsed.learningGoals && parsed.portfolioGoals && parsed.projects) {
+        if (!parsed.reflections) {
+          parsed.reflections = DEFAULT_PORTFOLIO_DATA.reflections;
+        }
         return parsed;
       }
     }
