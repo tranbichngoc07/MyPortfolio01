@@ -15,8 +15,8 @@ import * as Icons from 'lucide-react';
 export default function App() {
   const [data, setData] = useState<PortfolioData>(getPortfolioData());
   const [activeThemeId, setActiveThemeId] = useState<ThemeId>(getThemePreference() as ThemeId);
-  const [hideEditor, setHideEditor] = useState<boolean>(false);
-  const [showSystemHelp, setShowSystemHelp] = useState<boolean>(true);
+  const [hideEditor, setHideEditor] = useState<boolean>(true);
+  const [showSystemHelp, setShowSystemHelp] = useState<boolean>(false);
 
   // Sync state to localStorage on modification
   const handleDataChange = (newData: PortfolioData) => {
