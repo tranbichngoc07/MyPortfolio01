@@ -30,7 +30,7 @@ export const ProfilePreview: React.FC<ProfilePreviewProps> = ({
   activeTheme,
   hideEditor
 }) => {
-  const { personalInfo, learningGoals, portfolioGoals, projects } = data;
+  const { personalInfo, learningGoals, portfolioGoals, projects, reflections } = data;
   const vars = activeTheme.cssVariables;
 
   // Split goals by type
@@ -413,6 +413,47 @@ export const ProfilePreview: React.FC<ProfilePreviewProps> = ({
           </div>
         </section>
       </div>
+
+      {/* REFLECTIONS / NHẬT KÝ SECTION */}
+      {reflections && reflections.length > 0 && (
+        <div className="max-w-5xl mx-auto px-4 mt-12">
+          <section className="space-y-6">
+            <div className="flex items-center gap-2 pb-2">
+              <div className="w-1.5 h-6 rounded-full bg-pink-500"></div>
+              <div>
+                <h2 className="text-xl font-bold tracking-tight">Nhật Ký Học Tập</h2>
+                <p className="text-xs text-slate-500">Những điều tôi đã học được và cảm nhận trong hành trình học tập</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {reflections.map((ref) => (
+                <div
+                  key={ref.id}
+                  className={`p-5 rounded-xl border transition-all duration-200 hover:-translate-y-1 hover:shadow-md ${vars.card}`}
+                >
+                  <div className="flex items-start justify-between gap-3 mb-3">
+                    <div className="flex items-center gap-2">
+                      <span className="w-8 h-8 flex items-center justify-center rounded-lg bg-pink-500/10 text-pink-500 border border-pink-500/20 flex-shrink-0">
+                        <Icons.BookMarked size={16} />
+                      </span>
+                      <h3 className="text-sm font-bold leading-snug">{ref.title}</h3>
+                    </div>
+                    <span className={`text-[10px] font-mono px-2 py-0.5 rounded border whitespace-nowrap flex-shrink-0 ${vars.badge}`}>
+                      {ref.date}
+                    </span>
+                  </div>
+                  {ref.category && (
+                    <span className="inline-block text-[10px] uppercase tracking-wider font-bold text-pink-500 bg-pink-500/10 border border-pink-500/20 px-2 py-0.5 rounded mb-3">
+                      {ref.category}
+                    </span>
+                  )}
+                  <p className={`text-xs leading-relaxed whitespace-pre-line ${vars.textMuted}`}>{ref.content}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
+      )}
 
       {/* FOOTER SECTION */}
       <footer className="mt-20 border-t border-opacity-10 border-slate-300 dark:border-slate-800 pt-8 pb-12">
