@@ -79,23 +79,23 @@ export const DEFAULT_PORTFOLIO_DATA: PortfolioData = {
   personalInfo: {
     name: 'Trần Bích Ngọc',
     avatarUrl: '', // Will fall back to initials if empty
-    studentId: '25021234',
-    major: 'Hệ thống Thông tin (Information Systems)',
-    classCode: 'K70-HTT',
+    studentId: '25023344',
+    major: 'Hệ thống Thông tin ',
+    classCode: 'K70I-IS3',
     university: 'Trường Đại học Công nghệ - ĐHQGHN (VNU-UET)',
     email: 'tranbichngoc855@gmail.com',
-    linkedinUrl: 'https://linkedin.com/in/tranbichngoc-uet',
-    githubUrl: 'https://github.com/bichngoc-uet',
-    phone: '0987.654.321',
-    bio: 'Chào mọi người! Mình là sinh viên năm nhất chuyên ngành Hệ thống Thông tin tại Trường Đại học Công nghệ (UET) - ĐHQGHN. Bản thân là một người luôn hứng thú trước khả năng khai mở của dữ liệu và hệ thống thông tin quản lý đối với sự vận hành của doanh nghiệp. Mình đang tích cực học tập ngôn ngữ lập trình cơ bản, cơ sở dữ liệu và các kỹ năng phân tích nghiệp vụ (Business Analysis) để chuẩn bị hành trang vững vàng nhất cho tương lai nghiệp vụ khoa học dữ liệu.'
+    linkedinUrl: '',
+    githubUrl: 'https://github.com/tranbichngoc07',
+    phone: '0855.395.889',
+    bio: 'Chào mọi người! Mình là sinh viên năm nhất ngành Hệ thống Thông tin của Trường Đại học Công nghệ (UET) - ĐHQGHN. Bản thân là một người luôn hứng thú trước khả năng khai mở của dữ liệu và hệ thống thông tin quản lý đối với sự vận hành của doanh nghiệp. Mình đang tích cực học tập ngôn ngữ lập trình cơ bản, cơ sở dữ liệu và các kỹ năng phân tích nghiệp vụ để chuẩn bị hành trang vững vàng nhất cho tương lai.'
   },
   learningGoals: [
     {
       id: 'g-1',
-      title: 'Đạt GPA học kỳ I trên 3.6/4.0',
+      title: 'Đạt GPA học kỳ II 3.5/4.0',
       type: 'short',
-      description: 'Tập trung cao độ cho các môn cơ sở chính như Lập trình nâng cao (C++), Nhập môn Hệ thống Thông tin để đạt điểm A tuyệt đối.',
-      targetDate: 'Tháng 01/2027',
+      description: 'Tập trung cao độ cho các môn cơ sở chính như Lập trình nâng cao (Java), Giải tích 2, Toán rời rạc, Vật lý đại cương để đạt điểm A.',
+      targetDate: 'Học kỳ II năm nhất',
       completed: false
     },
     {
@@ -108,29 +108,12 @@ export const DEFAULT_PORTFOLIO_DATA: PortfolioData = {
     },
     {
       id: 'g-3',
-      title: 'Ứng tuyển vào LAB nghiên cứu của Khoa HTT',
-      type: 'short',
-      description: 'Liên hệ thầy cô phụ trách lab và chuẩn bị các bài test thuật toán, dữ liệu cơ bản để tham gia phụ giúp nghiên cứu từ hè năm nhất.',
-      targetDate: 'Tháng 06/2027',
-      completed: false
-    },
-    {
-      id: 'g-4',
       title: 'Đạt chứng chỉ IELTS 7.5+',
       type: 'long',
       description: 'Rèn luyện ngoại ngữ để học tập các giáo trình tiếng Anh chuyên ngành và chuẩn bị cho việc viết báo cáo khoa học quốc tế.',
       targetDate: 'Năm 2028 (Năm 3)',
       completed: false
     },
-    {
-      id: 'g-5',
-      title: 'Trở thành một Business Analyst (BA) / Data Consultant giỏi',
-      type: 'long',
-      description: 'Nắm vững cả 2 khía cạnh: Kỹ thuật (thiết kế hệ thống, lập trình, DB) và Nghiệp vụ doanh nghiệp để làm cầu nối cốt lõi trong các dự án công nghệ lớn.',
-      targetDate: 'Khi tốt nghiệp (Năm 2030)',
-      completed: false
-    }
-  ],
   portfolioGoals: [
     {
       id: 'p-1',
@@ -154,33 +137,63 @@ export const DEFAULT_PORTFOLIO_DATA: PortfolioData = {
   projects: [
     {
       id: 'proj-1',
-      title: 'UET Book Share - Hệ thống mượn sách nội bộ',
-      course: 'Môn học: Nhập môn Hệ thống Thông tin (IS101)',
-      description: 'Dự án nhóm cuối kỳ nhằm kết nối và chia sẻ giáo trình cũ giữa các sinh viên UET. Nhóm đã thực hiện thiết kế sơ đồ thực thể mối quan hệ (ERD), chuẩn hóa dữ liệu và xây dựng demo ứng dụng console bằng Python tương tác với file CSV để mô phỏng.',
-      techTags: ['Python', 'ERD Design', 'File DB (CSV)', 'UI Console'],
-      githubUrl: 'https://github.com/bichngoc-uet/uet-book-share',
-      demoUrl: '#',
-      timeString: 'Học kỳ I - Năm nhất'
+      title: 'Thao tác cơ bản với tệp tin và thư mục',
+      course: 'Môn học: CNS-AI',
+      description: 'Trình bày cấu trúc thư mục tối ưu và quy tắc đặt tên tệp đã thiết lập, kèm ảnh chụp minh họa',
+      techTags: '#',
+      githubUrl: '#',
+      demoUrl: 'https://ap.wps.com/cms/docs/d/cbTaqbjc5ancqBKg',
+      timeString: 'Học kỳ II - Năm nhất'
     },
     {
       id: 'proj-2',
-      title: 'UET Tour - Thuật toán tìm đường thông minh',
-      course: 'Môn học: Thực hành Kỹ thuật Lập trình (C++)',
-      description: 'Một chương trình nhỏ cài đặt thuật toán Dijkstra tìm đường đi ngắn nhất giữa các tòa nhà lớn tại khuôn viên Xuân Thủy của ĐHQGHN (Tòa GD1, GD2, GD3, Nhà Hiệu bộ, KTX Ngoại Ngữ). Dự án giúp các tân sinh viên dễ dàng tìm lớp học.',
-      techTags: ['C++', 'Thành phần đồ họa SFML', 'Dijkstra Algorithm', 'Data Structures'],
-      githubUrl: 'https://github.com/bichngoc-uet/uet-tour-dijkstra',
-      demoUrl: '#',
-      timeString: 'Học kỳ I - Năm nhất'
+      title: 'Tìm kiếm và đánh giá thông tin học thuật',
+      course: 'Môn học: CNS-AI',
+      description: 'Trình bày kết quả tìm kiếm học thuật bằng các toán tử nâng cao và bảng đánh giá nguồn tin đã thực hiện',
+      techTags: '#',
+      githubUrl: '#',
+      demoUrl: 'https://ap.wps.com/cms/docs/d/cbTaqq8LV9gAAIKV',
+      timeString: 'Học kỳ II - Năm nhất'
     },
     {
       id: 'proj-3',
-      title: 'Hanoi Street Food Map - Cẩm nang ăn uống quanh giảng đường',
-      course: 'Dự án cá nhân tự học ban đầu',
-      description: 'Giao diện website tổng hợp các quán ăn vặt, quán cơm sinh viên ngon-bổ-rẻ khu vực Dịch Vọng Hậu, Nghĩa Tân và Xuân Thủy. Website được xây dựng thuần thục bằng HTML/CSS và Tailwind CSS, hỗ trợ giao diện responsive đầy đủ.',
-      techTags: ['HTML5', 'CSS3', 'Tailwind CSS', 'Responsive design'],
-      githubUrl: 'https://github.com/bichngoc-uet/hanoi-food-map',
+      title: 'Viết prompt hiệu quả cho các tác vụ học tập',
+      course: 'CNS-AI,
+      description: 'Trình bày sự so sánh giữa Prompt ban đầu và Prompt cải tiến cùng kết quả đầu ra từ AI. ',
+      techTags: '#',
+      githubUrl: 'https://ap.wps.com/cms/docs/d/cbTaqv8glfhMBcUh',
       demoUrl: '#',
-      timeString: 'Khoảng nghỉ giữa 2 kỳ học'
+      timeString: 'Học kỳ II - Năm nhất'
+    },
+    {
+      id: 'proj-4',
+      title: 'Sử dụng công cục hợp tác trực tuyến cho dự án nhóm',
+      course: 'CNS-AI,
+      description: 'Trình bày minh chứng về việc sử dụng công cụ quản lý dự án nhóm và cách thức phối hợp trực tuyến',
+      techTags: '#',
+      githubUrl: 'https://ap.wps.com/cms/docs/d/cbTaqq4k9b1gHvF5',
+      demoUrl: '#',
+      timeString: 'Học kỳ II - Năm nhất'
+    },
+    {
+      id: 'proj-5',
+      title: 'Sử dụng AI tạo sinh để hỗ trợ sáng tạo nội dung',
+      course: 'CNS-AI,
+      description: 'Trưng bày sản phẩm nội dung số hoàn thiện được hỗ trợ bởi AI',
+      techTags: '#',
+      githubUrl: 'https://ap.wps.com/cms/docs/d/cbTaqsyoYcfziBNi',
+      demoUrl: '#',
+      timeString: 'Học kỳ II - Năm nhất'
+    },
+    {
+      id: 'proj-6',
+      title: 'Sử dụng AI có trách nhiệm trong học tập và nghiên cứu',
+      course: 'CNS-AI,
+      description: 'Trình bày bộ nguyên tắc cá nhân về sử dụng AI có trách nhiệm dựa trên các nghiên cứu đã thực hiện',
+      techTags: '#',
+      githubUrl: 'https://ap.wps.com/cms/docs/d/cbTaqjPPqXqPqYby',
+      demoUrl: '#',
+      timeString: 'Học kỳ II - Năm nhất'
     }
   ],
   reflections: [
