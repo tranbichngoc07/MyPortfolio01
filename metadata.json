@@ -1,6 +1,0 @@
-{
-  "name": "VNU UET IS Portfolio Builder",
-  "description": "Website tạo và quản lý trang portfolio cá nhân dành riêng cho sinh viên ngành Hệ thống Thông tin - Trường Đại học Công nghệ (UET - ĐHQGHN).",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
